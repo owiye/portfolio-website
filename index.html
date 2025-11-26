@@ -1,0 +1,330 @@
+// ...existing code...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Allan Onyango Owiye | Creative Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    :root{ --brand-1:#b05d23; --brand-2:#d78238; --dark:#2e1b0e; --bg:#fff8f2; }
+
+    *{ box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--dark);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+      height: 450px;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      animation: floatIn 2s ease-in-out;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    header h1 { margin: 0 0 8px; }
+    header h3 { margin: 0 0 12px; font-weight: 400; }
+
+    nav {
+      background-color: var(--dark);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: slideDown 1.5s ease-in-out;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--brand-2);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    section {
+      padding: 60px 10%;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      color: var(--brand-1);
+      border-bottom: 2px solid var(--brand-1);
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .skills, .education {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .skill, .edu {
+      background-color: #fff1e1;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .skill:hover, .edu:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .portfolio img {
+      width: 150px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: inline-block;
+    }
+
+    .portfolio img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: #fff;
+      text-align: center;
+      padding: 40px 10%;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .video-btn {
+      display: inline-block;
+      background-color: var(--brand-1);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      transition: transform 0.3s;
+      line-height: 1;
+      border: none;
+      outline: none;
+    }
+
+    .video-btn:focus {
+      box-shadow: 0 0 0 3px rgba(215,130,56,0.25);
+    }
+
+    .video-btn .btn-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 1;
+    }
+
+    .video-btn .btn-label {
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+      padding: 6px 10px;
+    }
+
+    .video-btn:hover,
+    .video-btn:focus {
+      transform: scale(1.05);
+    }
+
+    .video-btn:hover .btn-video,
+    .video-btn:focus .btn-video {
+      opacity: 1;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+    @keyframes floatIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+    @media (max-width:600px){
+      header { padding: 40px 12px; }
+      .video-btn { padding: 8px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header id="home">
+    <!-- updated: rename image file to a safe filename (rename file on disk too) -->
+    <img src="images/IMG20211213170901.jpg" alt="Allan Onyango Owiye">
+    <h1>Allan Onyango Owiye</h1>
+    <h3>Creative Designer, Chef & Video Editor</h3>
+    <p>Nairobi, Kenya | allanowiye@gmail.com | +254 702 905 012</p>
+
+    <!-- updated video src: videos/my-portfolio-video.mp4 -->
+    <a href="#contact" class="video-btn" role="button" aria-label="Get in Touch" tabindex="0">
+      <video class="btn-video" muted playsinline preload="metadata" aria-hidden="true">
+        <source src="videos/my-portfolio-video.mp4" type="video/mp4">
+      </video>
+      <span class="btn-label">Get in Touch</span>
+    </a>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I'm a passionate creative who blends design, storytelling, and culinary artistry to bring ideas to life. With experience in graphic design, video editing, and hospitality management, I craft visual and sensory experiences that connect with people. Whether it's designing striking visuals, editing engaging videos, or managing a kitchen with precision and creativity — I approach every project with imagination, discipline, and heart.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills & Expertise</h2>
+    <div class="skills">
+      <div class="skill">Graphic Design<br><small>Logos, posters, brand identity</small></div>
+      <div class="skill">Video Editing<br><small>Color grading, storytelling, content editing</small></div>
+      <div class="skill">Hospitality Management<br><small>Menu creation, team leadership, client service</small></div>
+      <div class="skill">Programming<br><small>Web and software basics</small></div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <h2>Featured Work</h2>
+    <div class="portfolio">
+      <figure>
+        <!-- updated: remove spaces/apostrophe from filename -->
+        <img src="images/chef-allans-logo.jpg" alt="chef Allan logo">
+        <figcaption><strong>A logo Design for chef Allan – Logo Design</strong></figcaption>
+      </figure>
+      <figure>
+        <!-- updated: use normalized filename -->
+        <img src="images/JAVs-food-palace.jpg" alt="The JAVs Food Palace logo">
+        <figcaption><strong>JAVs Food Palace logo design – Logo Design</strong></figcaption>
+      </figure>
+      <figure>
+        <!-- updated: separate image for web design -->
+        <img src="images/JAVs-food-palace-web.jpg" alt="The JAVs Food Palace web design">
+        <figcaption><strong>JAVs Food Palace web design – Web Design</strong></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>MORE CREATIVE WORKs COMING SOON....</h2>
+  </section>
+
+  <section id="education">
+    <h2>Education & Background</h2>
+    <div class="education">
+      <div class="edu">Nyawara Primary School (2008–2014) – 389 marks</div>
+      <div class="edu">St. Mary's School Yala (2015–2018) – B+ (77 points)</div>
+      <div class="edu">Diploma in Hospitality Management, NIBS (2019–2021)</div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <h2>Let's Collaborate</h2>
+    <p>Let's collaborate and create something amazing. Reach out for creative design, video, or hospitality projects.</p>
+    <p>allanowiye@gmail.com | +254 702 905 012 | Nairobi, Kenya</p>
+    <p>© 2025 Allan Onyango Owiye</p>
+  </footer>
+
+  <script>
+    // Play the button video for up to 5 seconds on hover/click/touch
+    (function(){
+      document.querySelectorAll('.video-btn').forEach(btn => {
+        const vid = btn.querySelector('video');
+        let stopTimer = null;
+        if (!vid) return;
+
+        const playForFive = () => {
+          clearTimeout(stopTimer);
+          try { vid.currentTime = 0; } catch(e) {}
+          vid.muted = true;
+          vid.play().catch(()=>{});
+          stopTimer = setTimeout(()=>{ vid.pause(); try { vid.currentTime = 0; } catch(e) {} }, 5000);
+        };
+
+        const stopNow = () => {
+          clearTimeout(stopTimer);
+          vid.pause();
+          try { vid.currentTime = 0; } catch(e) {}
+        };
+
+        btn.addEventListener('mouseenter', playForFive);
+        btn.addEventListener('mouseleave', stopNow);
+        btn.addEventListener('click', playForFive);
+        btn.addEventListener('touchstart', playForFive, {passive:true});
+
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            playForFive();
+          }
+        });
+      });
+    })();
+
+    // Section reveal using IntersectionObserver
+    (function(){
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(section => observer.observe(section));
+    })();
+  </script>
+</body>
+</html>
+// ...existing code...
